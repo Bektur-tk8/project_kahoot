@@ -56,7 +56,7 @@ class QuizTaker(models.Model):
 class UsersAnswer(models.Model):
     quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE)
     question  = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.question.label
