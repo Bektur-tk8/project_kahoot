@@ -1,21 +1,43 @@
-from accounts.forms import UserCreationForm, UserChangeForm
-from accounts.models import User
+
+from accounts.models import User, Point, Rating
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = [
+        "first_name",
+        "last_name",
+        "group",
+        "phone",
+        "email",
+        "rating_place",
+        "score"
+    ]
+    search_fields = [
+        "first_name",
+        "last_name",
+        "phone",
+    ]
+    list_filter = [
+        "group"
+    ]
 
 
-class UserAdmin(UserAdmin):
-	add_form = UserCreationForm
-	form = UserChangeForm
-	model = User
-	list_display = ('username', 'name', 'email', 'is_active')
-	list_filter = ('username', 'name', 'email', 'is_active')
-	fieldsets = (
-		(None, {'fields': ('name', 'username', 'email', 'password')}),
-		('Permissions', {'fields': ('is_staff', 'is_active')})
-	)
-	search_fields = ('username',)
-	ordering = ('username',)
+class UserAdminProxy(User):
+    class Meta:
+        proxy = True
+        verbose_name = 'LeadersTable'
+        verbose_name_plural = 'LeadersTable'
 
 
-admin.site.register(User, UserAdmin)
+@admin.register(UserAdminProxy)
+class LeaderBoard(admin.ModelAdmin):
+    list_display = ['email', 'name', 'second_name', 'group',
+                    'phone', 'score', 'rating_place',
+                    'get_passed_tests']
+    list_filter = ['group']
+    search_fields = ['name', 'second_name', 'phone']
+
+
+    def get_passed_tests(self, obj):
+        return obj.test_participants.filter(completed=True).count()

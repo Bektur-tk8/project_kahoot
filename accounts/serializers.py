@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 
 class LoginSerializer(serializers.Serializer):
-	username = serializers.CharField()
+	email = serializers.EmailField()
 	password = serializers.CharField()
 
 	def validate(self, data):
@@ -17,7 +17,7 @@ class LoginSerializer(serializers.Serializer):
 class RegisterSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ('id', 'name', 'email', 'username', 'password')
+		fields = ('id', 'name', 'email', 'password')
 		extra_kwargs = {'password': {'write_only': True}}
 
 	def create(self, validated_data):
@@ -33,4 +33,13 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ('id', 'name', 'email', 'username')
+		fields = ('id', 'name', 'email',)
+
+
+
+class UsersListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['name', 'second_name',
+                  'group', 'phone', 'score', 
+                  'rating_place']

@@ -1,11 +1,11 @@
 from django.urls import path, re_path
-from quiz.api import MyQuizListAPI, QuizListAPI, QuizDetailAPI, SaveUsersAnswer, SubmitQuizAPI
+from quiz.views import  QuizListAPI, QuizDetailAPI, SaveUsersAnswer,StartQuiz
 
 
 urlpatterns = [
-	path("my-quizzes/", MyQuizListAPI.as_view()),
 	path("quizzes/", QuizListAPI.as_view()),
-	path("save-answer/", SaveUsersAnswer.as_view()),
-	re_path(r"quizzes/(?P<slug>[\w\-]+)/$", QuizDetailAPI.as_view()),
-	re_path(r"quizzes/(?P<slug>[\w\-]+)/submit/$", SubmitQuizAPI.as_view()),
-]
+	path("start_quiz/<int:quiz_id>/", StartQuiz.as_view()),
+    path("save_answer/", SaveUsersAnswer.as_view()),
+	path("quiz_questions/<int:pk>/", QuizDetailAPI.as_view() ),
+    
+]   
