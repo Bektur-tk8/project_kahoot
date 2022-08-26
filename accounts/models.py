@@ -43,26 +43,11 @@ class User(AbstractUser):
     group = models.ForeignKey(UserGroup, on_delete=models.SET_NULL, null=True)
     score = models.BigIntegerField("Итоговый балл", blank=True, default=0)
     rating_place = models.IntegerField("Место в рейтинге", blank=True, default=0)
+    group_rating = models.IntegerField("Место в группе", default=0)
     # past_test_count = models.IntegerField("Количество пройденных тестов", default=0)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    
 
-# class LeaderBoard(models.Model):
-#     name = models.CharField(max_length=65)
-#     second_name = models.CharField(max_length=65)
-#     group = models.ForeignKey(UserGroup, on_delete=models.SET_NULL, null=True)
-#     phone = models.CharField(
-#         'Номер телефона',
-#         null=True,
-#         max_length=10
-#     )
-#     email = models.EmailField("Email", unique=True)
-#     rating_place = models.IntegerField("Место в рейтинге", blank=True, default=0)
-#     score = models.BigIntegerField("Итоговый балл", blank=True, default=0)
-#     past_test_count = models.IntegerField("Количество пройденных тестов", default=0)
-#     is_active = models.BooleanField(default=False)
-#     is_staff = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -93,16 +78,4 @@ class Rating(models.Model):
         return str(self.login)
 
 
-class QuestionTime(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    test = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    time = models.CharField(max_length=100)
 
-
-class QuestionScore(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    test = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    score = models.SmallIntegerField(blank=True)
-    answer = models.CharField(max_length=100)

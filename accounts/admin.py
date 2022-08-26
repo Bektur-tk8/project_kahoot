@@ -5,11 +5,11 @@ from django.contrib import admin
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = [
+        'email',
         "first_name",
         "last_name",
         "group",
         "phone",
-        "email",
         "rating_place",
         "score"
     ]
@@ -40,4 +40,4 @@ class LeaderBoard(admin.ModelAdmin):
 
 
     def get_passed_tests(self, obj):
-        return obj.test_participants.filter(completed=True).count()
+        return obj.quiz_takers.filter(completed=True).count()

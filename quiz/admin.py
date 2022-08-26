@@ -25,13 +25,13 @@ class QuizAdmin(nested_admin.NestedModelAdmin):
 class UsersAnswerInLine(admin.StackedInline):
     model = UsersAnswer
 
-class TestParticipantAdmin(admin.ModelAdmin):
+class QuizTakerAdmin(admin.ModelAdmin):
     inlines = [UsersAnswerInLine, ]
 
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Question)
 admin.site.register(Answer)
-admin.site.register(TestParticipant, TestParticipantAdmin)
+admin.site.register(QuizTaker, QuizTakerAdmin)
 admin.site.register(UsersAnswer)
 
 

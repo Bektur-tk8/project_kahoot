@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'knox',
     'drf_yasg',
     'nested_admin',
+    'django_filters',
 
     'accounts',
     'quiz',
@@ -62,10 +63,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
-    'UNICODE_JSON': False
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+#     'UNICODE_JSON': False
+# }
 
 ROOT_URLCONF = 'Kahootquiz.urls'
 

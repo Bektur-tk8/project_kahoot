@@ -40,9 +40,9 @@ class Answer(models.Model):
 		return self.label
 
 
-class TestParticipant(models.Model):
+class QuizTaker(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, 
-    on_delete=models.CASCADE, related_name="test_participants")
+    on_delete=models.CASCADE, related_name="quiz_takers")
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="completed_tests")
 	score = models.IntegerField(default=0)
 	completed = models.BooleanField(default=False)
@@ -54,7 +54,7 @@ class TestParticipant(models.Model):
 
 
 class UsersAnswer(models.Model):
-	test_participant = models.ForeignKey(TestParticipant, on_delete=models.CASCADE, related_name="user_answers")
+	quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE, related_name="user_answers")
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
 	answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True)
 

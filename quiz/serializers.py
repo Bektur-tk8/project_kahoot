@@ -1,4 +1,4 @@
-from quiz.models import Quiz, TestParticipant, Question, Answer, UsersAnswer
+from quiz.models import Quiz, QuizTaker, Question, Answer, UsersAnswer
 from rest_framework import serializers
 
 
@@ -51,9 +51,9 @@ class QuizQuestionsDetailSerializer(serializers.ModelSerializer):
         return representation
 
 
-class TestParticipantSerializer(serializers.ModelSerializer):
+class QuizTakerSerializer(serializers.ModelSerializer):
     class Meta:
-        model= TestParticipant
+        model= QuizTaker
         fields = "__all__"
 
     

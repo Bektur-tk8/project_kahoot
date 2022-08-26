@@ -1,7 +1,7 @@
 from accounts.models import User
 from .serializers import LoginSerializer, RegisterSerializer, UserSerializer, UsersListSerializer
 from knox.models import AuthToken
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 
@@ -46,7 +46,8 @@ class UserAPI(generics.RetrieveAPIView):
 
 
 class UsersListView(ListAPIView):
-    queryset = User.objects.all().order_by('-score')
-    serializer_class = UsersListSerializer
-    search_fields = ['name', 'second_name', 'phone_number']
-    filterset_fields = ['group']
+	queryset = User.objects.all().order_by('-score')
+	serializer_class = UsersListSerializer
+	filter_backends = [filters.SearchFilter]
+	search_fields = ['name', 'second_name', 'phone_number']
+	filterset_fields = ['group']
