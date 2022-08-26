@@ -67,8 +67,6 @@ class SaveUsersAnswer(APIView):
 		permissions.IsAuthenticated
     ]
 
-
-
     def post(self, request, *args, **kwargs):
         quiztaker_id = request.data['quiztaker']
         question_id = request.data['question']
@@ -105,7 +103,3 @@ class SaveUsersAnswer(APIView):
                 status = status.HTTP_200_OK
             )
         return Response({"message":"Answer Received!"}, status=status.HTTP_200_OK)
-   
-        
-
-

@@ -60,22 +60,3 @@ class User(AbstractUser):
 
 
 
-class Point(models.Model):
-    login = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.SmallIntegerField()
-    test = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.login)
-
-
-class Rating(models.Model):
-    login = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.SmallIntegerField()
-    test = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.login)
-
-
-

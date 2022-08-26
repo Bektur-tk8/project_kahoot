@@ -60,8 +60,3 @@ class UsersAnswer(models.Model):
 
 	def __str__(self):
 		return str(self.question.id)
-
-
-# @receiver(pre_save, sender=Quiz)
-# def slugify_name(sender, instance, *args, **kwargs):
-# 	instance.slug = slugify(instance.name)

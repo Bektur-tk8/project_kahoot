@@ -55,5 +55,3 @@ class QuizTakerSerializer(serializers.ModelSerializer):
     class Meta:
         model= QuizTaker
         fields = "__all__"
-
-    

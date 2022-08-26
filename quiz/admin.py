@@ -33,6 +33,3 @@ admin.site.register(Question)
 admin.site.register(Answer)
 admin.site.register(QuizTaker, QuizTakerAdmin)
 admin.site.register(UsersAnswer)
-
-
-
