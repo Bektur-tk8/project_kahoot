@@ -99,7 +99,7 @@ class SaveUsersAnswer(APIView):
             calculate_rating(request)
             return Response(
                 {
-                    "message":"You are finished test!"
+                    "message":"You have finished test!"
                 },
                 status = status.HTTP_200_OK
             )

@@ -17,12 +17,14 @@ class LoginSerializer(serializers.Serializer):
 class RegisterSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ('name', 'email', 'password')
+		fields = ('name', 'second_name', 'phone', 'email', 'password')
 		extra_kwargs = {'password': {'write_only': True}}
 
 	def create(self, validated_data):
 		user = User.objects.create_user(
 			name=validated_data["name"],
+			second_name = validated_data["second_name"],
+			# phone = validated_data["phone"],
 			email=validated_data["email"],
 			password=validated_data["password"]
 		)
@@ -33,7 +35,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ('id', 'name', 'email',)
+		fields = ('id', 'name', 'second_name', 'email', 'phone')
 
 
 

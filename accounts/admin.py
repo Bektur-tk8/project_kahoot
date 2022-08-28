@@ -4,20 +4,19 @@ from django.contrib import admin
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = [
-        'email',
-        "first_name",
-        "last_name",
+        "name",
+        "second_name",
         "group",
         "phone",
+        'email',
         "rating_place",
         "score"
     ]
-    exclude = ["groups", "last_login", 
-    "Superuser_status", "user_permissions", 
-    "name", "second_name", "date_joined", "group_rating"]
+    exclude = ["first_name", "last_name", "groups", "last_login", 
+    "superuser_status", "user_permissions", "date_joined", "group_rating"]
     search_fields = [
-        "first_name",
-        "last_name",
+        "name",
+        "second_name",
         "phone",
     ]
     list_filter = [
@@ -34,15 +33,14 @@ class UserAdminProxy(User):
 
 @admin.register(UserAdminProxy)
 class LeaderBoard(admin.ModelAdmin):
-    list_display = ['email', 'name', 'second_name', 'group',
-                    'phone', 'score', 'rating_place',
-                    'get_passed_tests']
-    exclude = ["groups", "last_login", 
-    "Superuser_status", "user_permissions", 
-    "name", "second_name", "date_joined", "group_rating"]
+    list_display = ['name', 'second_name', 'group',
+                    'phone', 'email', 'score', 'rating_place',
+                    'passed_tests']
+    exclude = ["groups", "last_login", "first_name", "last_name", 
+    "superuserstatus", "user_permissions", "date_joined", "group_rating"]
     list_filter = ['group']
     search_fields = ['name', 'second_name', 'phone']
 
 
-    def get_passed_tests(self, obj):
+    def passed_tests(self, obj):
         return obj.quiz_takers.filter(completed=True).count()
