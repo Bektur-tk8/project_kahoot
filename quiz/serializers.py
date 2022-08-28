@@ -34,9 +34,10 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class UsersAnswerSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = UsersAnswer
-		fields = "__all__"
+    answer_time = serializers.IntegerField()
+    class Meta:
+        model = UsersAnswer
+        fields = "__all__"
 
 
 

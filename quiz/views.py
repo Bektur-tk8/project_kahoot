@@ -1,5 +1,6 @@
 from datetime import datetime
 from os import stat
+from drf_yasg.utils import swagger_auto_schema
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions, status
@@ -38,7 +39,7 @@ class QuizListAPI(generics.ListAPIView):
 
 class QuizDetailAPI(generics.RetrieveAPIView):
     serializer_class = QuizQuestionsDetailSerializer
-    authentication_classes = (SessionAuthentication,)
+    # authentication_classes = (SessionAuthentication,)
     permission_classes = [
 		permissions.IsAuthenticated
 	]
@@ -66,9 +67,9 @@ class SaveUsersAnswer(APIView):
     permission_classes = [
 		permissions.IsAuthenticated
     ]
-
+    @swagger_auto_schema(request_body=UsersAnswerSerializer)
     def post(self, request, *args, **kwargs):
-        quiztaker_id = request.data['quiztaker']
+        quiztaker_id = request.data['quiz_taker']
         question_id = request.data['question']
         answer_id = request.data['answer']
         answer_time = request.data['answer_time']

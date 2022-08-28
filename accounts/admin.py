@@ -12,6 +12,9 @@ class UserAdmin(admin.ModelAdmin):
         "rating_place",
         "score"
     ]
+    exclude = ["groups", "last_login", 
+    "Superuser_status", "user_permissions", 
+    "name", "second_name", "date_joined", "group_rating"]
     search_fields = [
         "first_name",
         "last_name",
@@ -34,6 +37,9 @@ class LeaderBoard(admin.ModelAdmin):
     list_display = ['email', 'name', 'second_name', 'group',
                     'phone', 'score', 'rating_place',
                     'get_passed_tests']
+    exclude = ["groups", "last_login", 
+    "Superuser_status", "user_permissions", 
+    "name", "second_name", "date_joined", "group_rating"]
     list_filter = ['group']
     search_fields = ['name', 'second_name', 'phone']
 
