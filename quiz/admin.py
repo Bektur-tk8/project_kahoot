@@ -16,7 +16,7 @@ class AnswerInLine(nested_admin.NestedStackedInline):
 class QuestionInLine(nested_admin.NestedStackedInline):
     model = Question
     inlines = [AnswerInLine,]
-    extra = 5
+    extra = 1
 
 
 class QuizAdmin(nested_admin.NestedModelAdmin):

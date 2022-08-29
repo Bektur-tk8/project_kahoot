@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'knox',
     'drf_yasg',
     'nested_admin',
@@ -67,6 +68,8 @@ MIDDLEWARE = [
 #     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 #     'UNICODE_JSON': False
 # }
+
+
 
 ROOT_URLCONF = 'Kahootquiz.urls'
 
