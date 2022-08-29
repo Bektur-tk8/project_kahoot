@@ -1,3 +1,4 @@
+from operator import truediv
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
@@ -46,7 +47,7 @@ class User(AbstractUser):
     rating_place = models.IntegerField("Место в рейтинге", blank=True, default=0)
     group_rating = models.IntegerField("group_rating", default=0)
     # past_test_count = models.IntegerField("Количество пройденных тестов", default=0)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     
